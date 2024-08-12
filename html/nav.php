@@ -32,7 +32,7 @@
         </li>
         <?php foreach($categories as $item):?>
         <li class="nav-item">
-          <a class="nav-link" href="#"><?php echo $item["name"];?></a>
+          <a class="nav-link" href="/category.php?id=<?php echo $item["id"];?>"><?php echo $item["name"];?></a>
         </li>
         <?php endforeach;?>
       </ul>
