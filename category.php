@@ -1,23 +1,10 @@
 <?php
+  require_once("./functions/db.php");
     // 1 Get Parameter
         $id = $_GET["id"];
     // 2. connect db
-    $host = "localhost";
-    $user = "root";
-    $pass = "root";
-    $db = "t2403m";
-    $conn = new mysqli($host,$user,$pass,$db);
-    if($conn->error){
-        die("Connect refused!");
-    }
-    // 3. query db by parameter
-    $sql = "select * from products where category_id= $id";
-    $result = $conn->query($sql);
-    // 4. convert data to array
-    $products = [];
-    while($row = $result->fetch_assoc()){
-        $products[] = $row;
-    }
+    $sql = "select * from products where category_id=$id";
+    $products = select($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">

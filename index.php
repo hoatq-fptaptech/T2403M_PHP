@@ -1,29 +1,13 @@
+<?php 
+  require_once("./functions/db.php");
+  $sql = "select * from products";
+  $products = select($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once("html/head.php");?>
 <body>
   <?php include_once("html/nav.php");?>
-  <?php
-     // get categories from database
-        // 1 connect to db
-        $host = "localhost";
-        $user = "root";
-        $pass = "root";
-        $db = "t2403m";
-        $conn = new mysqli($host,$user,$pass,$db);
-        if($conn->error){
-            die("Connect refused!");
-        }
-        //die("Connected database...");
-      // 2. query data
-      $sql = "select * from products";
-      $result = $conn->query($sql);
-      // 3. convert data to array
-      $products = [];
-      while($row = $result->fetch_assoc()){
-          $products[] = $row;
-      }
-  ?>
   <main>
     <div class="container">
         <div class="row">

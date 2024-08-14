@@ -1,23 +1,6 @@
 <?php 
-    // get categories from database
-    // 1 connect to db
-        $host = "localhost";
-        $user = "root";
-        $pass = "root";
-        $db = "t2403m";
-        $conn = new mysqli($host,$user,$pass,$db);
-        if($conn->error){
-            die("Connect refused!");
-        }
-        //die("Connected database...");
-    // 2. query data
-    $sql = "select * from categories";
-    $result = $conn->query($sql);
-    // 3. convert data to array
-    $categories = [];
-    while($row = $result->fetch_assoc()){
-        $categories[] = $row;
-    }
+    require_once("./functions/db.php");
+    $categories = select("select * from categories");
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container">
@@ -37,7 +20,7 @@
         <?php endforeach;?>
       </ul>
       <form action="/search.php" method="get" class="d-flex" role="search">
-        <input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input name="query" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>

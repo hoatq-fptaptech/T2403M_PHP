@@ -1,0 +1,27 @@
+<?php 
+function connect(){
+    $config = file_get_contents("app_setting.json");// string
+    $config = json_decode($config);
+    $host = $config->host;
+    $user = $config->user;
+    $pass = $config->password;
+    $db = $config->database;
+    $conn = new mysqli($host,$user,$pass,$db);
+    if($conn->error){
+        die("Connect refused!");
+    }
+    return $conn;
+}
+
+function select($sql){
+    $conn = connect();
+    $result = $conn->query($sql);
+    //convert data to array
+    $data = [];
+    while($row = $result->fetch_assoc()){
+        $data[] = $row;
+    }
+    return $data;
+}
+
+
