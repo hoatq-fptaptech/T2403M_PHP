@@ -24,4 +24,12 @@ function select($sql){
     return $data;
 }
 
+function findById($sql) {
+    $data = select($sql); // [] : 1 hoặc 0 element
+    if(count($data)>0){
+        return $data[0];
+    }
+    return null;
+}
+
 
