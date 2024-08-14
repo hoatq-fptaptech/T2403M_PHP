@@ -24,8 +24,9 @@ if($product == null){
                     <p>$<?php echo $product["price"];?></p>
                     <div class="row">
                         <div class="col-3">
-                            <form>
+                            <form method="post" action="/add_to_cart.php">
                                 <div class="input-group">
+                                    <input type="hidden" name="id" value="<?php echo $product["id"];?>"/>
                                     <input name="buy_qty" type="number" value="1" min="1" class="form-control">
                                     <button class="btn btn-outline-danger" type="submit">Add to cart</button>
                                 </div>
