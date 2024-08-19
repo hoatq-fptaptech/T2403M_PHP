@@ -1,4 +1,5 @@
 <?php 
+    session_start();
 require_once("./functions/db.php");
 $id = $_GET["id"];
 $sql = "select * from products where id = $id";

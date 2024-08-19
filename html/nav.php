@@ -1,5 +1,4 @@
 <?php 
-    session_start();
     $cart = isset($_SESSION["cart"])?$_SESSION["cart"]:[];
     require_once("./functions/db.php");
     $categories = select("select * from categories");

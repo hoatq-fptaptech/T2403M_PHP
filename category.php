@@ -1,4 +1,5 @@
-<?php
+<?php 
+    session_start();
   require_once("./functions/db.php");
     // 1 Get Parameter
         $id = $_GET["id"];

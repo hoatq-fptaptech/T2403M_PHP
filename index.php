@@ -1,4 +1,5 @@
 <?php 
+  session_start();
   require_once("./functions/db.php");
   $sql = "select * from products";
   $products = select($sql);
