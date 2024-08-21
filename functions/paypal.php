@@ -7,6 +7,7 @@ function get_access_token($client_id, $client_secret) {
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, 'grant_type=client_credentials');
     curl_setopt($ch, CURLOPT_USERPWD, $client_id . ':' . $client_secret);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
   
     $headers = array();
     $headers[] = 'Accept: application/json';
@@ -28,6 +29,7 @@ function get_access_token($client_id, $client_secret) {
       curl_setopt($ch, CURLOPT_URL, 'https://api.sandbox.paypal.com/v1/payments/payment');
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
       curl_setopt($ch, CURLOPT_POST, 1);
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
       curl_setopt($ch, CURLOPT_POSTFIELDS, '{
         "intent":"sale",
         "redirect_urls":{

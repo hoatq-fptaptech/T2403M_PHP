@@ -63,7 +63,7 @@ if($order_id != null){
         $payment = create_payment($access_token,$success_url,$fail_url,$grand_total);
         // chuyển khách hàng sang trang thanh toán của paypal
         header("Location: ". $payment['links']['1']['href']);
-        die("A");
+        die();
     }
 
     header("Location: /thankyou.php");

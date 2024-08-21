@@ -1,1 +1,5 @@
-<h1>Bạn đã thanh toán thành công với Paypal</h1>
+<?php 
+// cập nhật trạng thái đã trả tiền paid => 1
+
+// chuyển về trang thankyou
+header("Location: /thankyou.php");
