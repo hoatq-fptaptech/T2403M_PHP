@@ -45,9 +45,20 @@ if($order_id != null){
         $buy_qty = $item["buy_qty"];
         $price = $item["price"];
         $sql = "insert into order_items(order_id,product_id,buy_qty,price)
-             VALUES($order_id,$product_id, $buy_qty,$price)";
-        insert($sql);     
+             VALUES($order_id,$product_id, $buy_qty,$price);";
+        insert($sql);   
+        $sql_update = "update products set qty=qty-$buy_qty where id=$product_id;";
+        update($sql_update);  
     }
+    $_SESSION["cart"] = null;
+    // send email to customer
+    $from_email = "hoatq4@fpt.edu.vn";
+    $headers = "From: $from_email";
+    $subject = "Thông tin đơn hàng #$order_id";
+    $message = file_get_contents("/mail/order_template.php");
+    mail($email, $subject,$message,$headers);
+
+
     if($payment_method == "PAYPAL"){
         // thoong tin tài khoản paypal
         $client_id = "AZFEOYBfFE-wy0qQI2cwemlCTeSwUM0PoadhQ23nJbHoFSxQQzW7w3OsHROlaS9nnYOg87jDxBVilTht";

@@ -40,3 +40,8 @@ function insert($sql){
     }
     return null;
 }
+
+function update($sql) {
+    $conn = connect();
+    $conn->query($sql);
+}
