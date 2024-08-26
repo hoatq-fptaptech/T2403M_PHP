@@ -8,15 +8,7 @@
 <body>
     <main>
         <div class="row">
-            <aside class="col-3">
-                <ul class="list-group">
-                    <li class="list-group-item">Orders</li>
-                    <li class="list-group-item">Customers</li>
-                    <li class="list-group-item">Products</li>
-                    <li class="list-group-item">Categories</li>
-                    <li class="list-group-item">Reviews</li>
-                </ul>
-            </aside>
+        <?php include_once("./../html/admin_aside.php");?>
             <article class="col">
                 <h1>Orders Listing</h1>
                 <table class="table table-bordered table-striped">
@@ -29,6 +21,7 @@
                         <th>Payment</th>
                         <th>Paid</th>
                         <th>Status</th>
+                        <th></th>
                     </thead>
                     <tbody>
                         <?php foreach($orders as $item):?>
@@ -39,12 +32,28 @@
                                 <td><?php echo $item["grand_total"];?></td>
                                 <td><?php echo $item["created_at"];?></td>
                                 <td><?php echo $item["payment_method"];?></td>
-                                <td><?php echo $item["paid"];?></td>
-                                <td><?php echo $item["status"];?></td>
+                                <td>
+                                    <?php if($item["paid"]): ?>
+                                        <span class="text-success">Paid</span>
+                                    <?php else: ?>
+                                        <span class="text-danger">UnPaid</span> 
+                                    <?php endif;?>
+                                </td>
+                                <td><?php echo status_label($item["status"]);?></td>
+                                <td><a href="/admin/order_detail.php?id=<?php echo $item["id"];?>">Detail</a></td>
                             </tr>
                         <?php endforeach;?>    
                     </tbody>
                 </table>
+                <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+                </nav>
             </article>
         </div>
     </main>
