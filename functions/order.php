@@ -40,8 +40,24 @@ function order_detail($id){
 }
 
 function update_status($order_id,$new_status){
-    if($new_status > PENDING && $new_status <= CANCEL ){
-        $sql = "update orders set status = $new_status where id= $order_id";
+    if($new_status > PENDING && $new_status < CANCEL ){
+        $status = $new_status - 1;
+        $sql = "update orders set status = $new_status where id= $order_id and status=$status";
         update($sql);
+    }
+    if($new_status == CANCEL){
+        $pending = PENDING;
+        $confirm = CONFIRM;
+        $sql = "update orders set status = $new_status where id= $order_id and 
+                                        status in ($pending,$confirm)";
+        update($sql);
+        $sql_items = "select * from order_items where order_id=$order_id";
+        $items=  select($sql_items);
+        foreach($items as $item){
+            $buy_qty = $item['buy_qty'];
+            $product_id = $item["product_id"];
+            $sql_p = "update products set qty = qty+$buy_qty where id=$product_id";
+            update($sql_p);
+        }
     }
 }
