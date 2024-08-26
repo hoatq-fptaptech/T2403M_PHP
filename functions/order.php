@@ -38,3 +38,10 @@ function order_detail($id){
         "items"=>$items
     ];              
 }
+
+function update_status($order_id,$new_status){
+    if($new_status > PENDING && $new_status <= CANCEL ){
+        $sql = "update orders set status = $new_status where id= $order_id";
+        update($sql);
+    }
+}
