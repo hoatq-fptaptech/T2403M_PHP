@@ -15,12 +15,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-4">
-                    <h1>Register</h1>
-                    <form action="/post_register.php" method="post">
-                        <div class="mb-3">
-                            <label class="form-label">Full name</label>
-                            <input type="text" class="form-control" name="full_name"/>
-                        </div>
+                    <h1>Login</h1>
+                    <form action="/post_login.php" method="post">
                         <div class="mb-3">
                             <label class="form-label">Email</label>
                             <input type="email" class="form-control" name="email"/>

@@ -1,4 +1,10 @@
 <?php 
+  session_start();  
+    require_once("./../functions/user.php");
+    if(!is_admin()){
+        header("Location: /404notfound.php");
+        die();
+    }
     require_once("./../functions/order.php");
     $id = $_GET["id"];
     $info = order_detail($id);
