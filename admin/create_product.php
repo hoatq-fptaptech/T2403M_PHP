@@ -18,7 +18,7 @@
         <?php include_once("./../html/admin_aside.php");?>
             <article class="col">
                 <h1>Create new product</h1>
-                <form action="#" method="post">
+                <form action="/admin/save_product.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label>Name</label>
                         <input name="name" type="text" class="form-control" />
